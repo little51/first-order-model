@@ -1,3 +1,63 @@
+# First Order Motion Model for Image Animation 实践过程
+
+forked from https://github.com/AliaksandrSiarohin/first-order-model
+
+## 1、clone
+
+从github.com clone比较慢，可以用gitclone.com加速
+
+git clone https://gitclone.com/github.com/little51/first-order-model.git --depth=1
+
+## 2、安装conda
+
+```shell
+参考 https://zhuanlan.zhihu.com/p/477687451
+
+conda create -n first-order-model python=3.7 
+conda info --env
+conda activate first-order-model
+```
+
+## 3、安装依赖环境
+
+```shell
+pip uninstall pywavelets
+pip uninstall numpy
+pip install imageio==2.3.0  -i http://pypi.douban.com/simple --trusted-host=pypi.douban.com
+pip install matplotlib==2.2.2 -i http://pypi.douban.com/simple --trusted-host=pypi.douban.com
+pip install numpy==1.15.0 -i http://pypi.douban.com/simple --trusted-host=pypi.douban.com
+pip install pandas==0.23.4 -i http://pypi.douban.com/simple --trusted-host=pypi.douban.com
+pip install python-dateutil==2.7.3 -i http://pypi.douban.com/simple --trusted-host=pypi.douban.com
+pip install pytz==2018.5 -i http://pypi.douban.com/simple --trusted-host=pypi.douban.com
+pip install PyYAML==5.1 -i http://pypi.douban.com/simple --trusted-host=pypi.douban.com
+pip install scikit-image==0.14.0 -i http://pypi.douban.com/simple --trusted-host=pypi.douban.com
+pip install scikit-learn==0.19.2 -i http://pypi.douban.com/simple --trusted-host=pypi.douban.com
+pip install scipy==1.1.0 -i http://pypi.douban.com/simple --trusted-host=pypi.douban.com
+pip install torch-1.9.0+cu102-cp37-cp37m-win_amd64.whl
+pip install torchvision==0.2.1 -i http://pypi.douban.com/simple --trusted-host=pypi.douban.com
+pip install PyWavelets==0.5.0 -i http://pypi.douban.com/simple --trusted-host=pypi.douban.com
+pip install tqdm==4.24.0 -i http://pypi.douban.com/simple --trusted-host=pypi.douban.com
+```
+
+## 4、测试依赖环境
+
+```python
+在python环境中执行，返回True为正常
+import torch
+torch.cuda.is_available()
+```
+
+## 5、测试
+
+checkpooint文件从https://gitclone.com/download1/model/vox-cpk.pth.tar 和 https://gitclone.com/download1/model/vox-adv-cpk.pth.tar 下载，生成的结果在result.mp4中。
+
+```shell
+python demo.py --config config/vox-256.yaml --driving_video 原视频.mp4 --source_image 目标视频的静态图.png --checkpoint vox-adv-cpk.pth.tar --result_video result.mp4 --relative --adapt_scale
+```
+
+
+
+以下是AliaksandrSiarohin/first-order-model原文：
 <b>!!! Check out our new [paper](https://arxiv.org/pdf/2104.11280.pdf) and [framework](https://github.com/snap-research/articulated-animation) improved for articulated objects</b>
 
 # First Order Motion Model for Image Animation
